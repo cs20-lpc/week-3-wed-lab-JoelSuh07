@@ -14,14 +14,14 @@ void LinkedList<T>::append(const T& elem) {
     Node* newNode = new Node(elem);
 
     if (current == nullptr){
-        current = newNode;
+        head = newNode;
     }
 
-    while (next != nullptr){
+    while (current != nullptr){
         current = current -> next;
     }
     current -> next = newNode;
-    delete newNode;
+    ++length;
 }
 
 template <typename T>
@@ -34,6 +34,7 @@ void LinkedList<T>::clear() {
         current = next;
     }
     head = nullptr;
+    length = 0;
 }
 
 template <typename T>
@@ -70,6 +71,7 @@ void LinkedList<T>::insert(int position, const T& elem){
 
     if (position == 0){
         head = new Node(elem, head);
+        ++length;
         return;
     }
 
@@ -82,6 +84,7 @@ void LinkedList<T>::insert(int position, const T& elem){
         if (count == position){
             prev -> next = newNode;
             newNode -> next = current;
+            ++length;
             return;
         }
         prev = current;
@@ -91,6 +94,7 @@ void LinkedList<T>::insert(int position, const T& elem){
 
     if (count == position){
         prev -> next = newNode;
+        ++length;
         return;
     }
 
@@ -101,6 +105,45 @@ void LinkedList<T>::insert(int position, const T& elem){
 template <typename T>
 bool LinkedList<T>::isEmpty() const {
     return this->length == 0;
+}
+
+template <typename T>
+void LinkedList<T>::remove(int position){
+    // TODO added by myself
+    if (position <0) throw out_of_range ("Position cannot be negative.");
+    
+    if (position == 0){
+        Node* temp = head;
+        delete head;
+        head = temp -> next;
+        --length;
+        return;
+    }
+
+    Node* current = head;
+    Node* prev = nullptr;
+    int count = 0;
+    
+    while (current != nullptr){
+        if (count == position){
+            prev = current;
+            current = current -> next;
+            delete prev;
+            prev = current;
+            --length;
+            return;
+        }
+        prev = current;
+        current = current -> next;
+        ++count;
+    }
+
+    if (count == position){
+        delete prev;
+        --length;
+        return;
+    }
+    throw out_of_range ("Position out of bounds.");
 }
 
 template <typename T>
