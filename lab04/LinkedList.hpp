@@ -12,6 +12,7 @@ class LinkedList : public List<T> {
         struct Node {
             T value;
             Node* next;
+            Node* prev;
 
             Node(T v = T(), Node* n = nullptr)
             : value(v), next(n) { }
