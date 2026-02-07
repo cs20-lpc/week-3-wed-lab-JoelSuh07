@@ -121,33 +121,30 @@ void LinkedList<T>::remove(int position){
         --length;
         return;
     }else{
-            Node* current = head;
-            Node* prev = nullptr;
-            int count = 0;
+            Node* temp = nullptr;
+            Node* prev = head;
+
+        for (int i = 0; i < position -1; ++i){
             
-        for (int i = 0; i < position; ++i){
+            if (prev == nullptr || prev -> next == nullptr){
+                throw out_of_range ("Position out of bounds.");
+            }
             
-            if (count == position){
-                prev -> next = current -> next;
-                delete current;
-                --length;
-                return;
-            }else{
-                prev = current;
-                current = current -> next;
-                ++count;
+            prev = prev -> next;
+            
+        }
+        if (prev -> next == nullptr){
+            throw out_of_range ("Position out of bounds.");
+        } else{
+            temp = prev -> next;
+            prev -> next = temp -> next;
+            delete temp;
+            --length;                
+            return;
+                
             }
         }
     }
-
-    if (count == position){
-        Node* temp = current;
-        delete temp;
-        --length;
-        return;
-    }
-    throw out_of_range ("Position out of bounds.");
-}
 
 template <typename T>
 void LinkedList<T>::replace(int position, const T& elem) {
