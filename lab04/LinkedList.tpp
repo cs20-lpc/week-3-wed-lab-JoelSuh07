@@ -23,6 +23,7 @@ void LinkedList<T>::append(const T& elem) {
     }
 
     current -> next = newNode;
+    newNode -> prev = current;
     }
     ++this -> length;
 }
@@ -70,7 +71,7 @@ int LinkedList<T>::getLength() const {
 template <typename T>
 void LinkedList<T>::insert(int position, const T& elem){
     //TODO added by myself
-    if (position < 0) throw out_of_range ("Position cannot be negative.");
+    if (position < 0 || position > this -> length) throw out_of_range ("Position cannot be negative.");
 
     if (position == 0){
         head = new Node(elem, head);
@@ -80,30 +81,27 @@ void LinkedList<T>::insert(int position, const T& elem){
 
     Node* current = head;
     Node* prev = nullptr;
-    Node* newNode = new Node(elem);
-    int count = 0;
 
-    while(current != nullptr){
-        if (count == position){
+    for (int i = 0; i < position -1; ++i) current = current -> next;
+
+    if (current == nullptr){
+            /*
             prev -> next = newNode;
             newNode -> next = current;
             ++ this ->length;
+            */
+           //can use append for end of the list
+           append(elem);
+
             return;
         }
-        prev = current;
-        current = current -> next;
-        ++count;
-    } 
-
-    if (count == position){
-        prev -> next = newNode;
-        ++this ->length;
-        return;
+        else{
+        Node* newNode = new Node(elem, current, current -> prev);
+        current -> prev -> next = newNode;
+        current -> prev = newNode;
+        ++this -> length;
+        }
     }
-
-    delete newNode;
-    throw out_of_range ("Position out of bounds.");
-}
 
 template <typename T>
 bool LinkedList<T>::isEmpty() const {
