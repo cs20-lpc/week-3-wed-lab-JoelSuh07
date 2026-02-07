@@ -12,13 +12,13 @@ void LinkedList<T>::append(const T& elem) {
     // TODO
     
     Node* newNode = new Node(elem);
+    Node* current = head;
 
     if (current == nullptr){
         head = newNode;
     } else{
 
     while (current -> next != nullptr){
-        Node* current = head;
         current = current -> next;
     }
 
@@ -71,10 +71,10 @@ int LinkedList<T>::getLength() const {
 template <typename T>
 void LinkedList<T>::insert(int position, const T& elem){
     //TODO added by myself
-    if (position < 0 || position > this -> length) throw out_of_range ("Position cannot be negative.");
+    if (position < 0 || position > this -> length) throw out_of_range ("Position out of bounds.");
 
     if (position == 0){
-        head = new Node(elem, head);
+        Node* head = new Node(elem, head, nullptr);
         ++this -> length;
         return;
     }
