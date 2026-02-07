@@ -13,13 +13,14 @@ using namespace std;
     cout << "5. Get Length" << endl;
     cout << "6. Clear List" << endl;
     cout << "7. Check if Empty" << endl;
-    cout << "8. Exit" << endl;
+    cout << "8. Remove a Position" << endl;
+    cout << "9. Exit" << endl;
     cout << "Choice: ";
 }
 
 
 int main(){
-    try{
+
     LinkedList<int> myList;
     //preinserting values into LinkedList
     myList.insert(0, 0);
@@ -27,15 +28,19 @@ int main(){
     myList.insert(2, 20);
     myList.insert(3, 30);
 
-
-    // We'll use int for this test, but it works for any T
-    LinkedList<int> list;
     int choice, pos, val;
     bool running = true;
 
     while (running) {
         printMenu();
-        cin >> choice;
+
+        if (!(cin >> choice)){
+            cout << "Invalid input. Please use an Integer value." << endl;
+
+            cin.clear();
+            cin.ignore(1000, '\n');
+        }
+
 
         try {
             switch (choice) {
@@ -79,7 +84,14 @@ int main(){
                     cout << (myList.isEmpty() ? "List is empty." : "List is not empty.") << endl;
                     break;
 
-                case 8: // Exit
+                case 8: //To Remove
+                    cout << "Enter a positino to remove: ";
+                    cin >> pos;
+                    myList.remove(pos);
+                    cout << "Removed element at " << pos << endl;
+                    break;
+
+                case 9: // Exit
                     running = false;
                     break;
 
@@ -88,15 +100,13 @@ int main(){
             }
             
             // Show the list after every successful operation
-            if (running) {
-                cout << "Current List: " << myList << endl;
-            }
+            if (running) cout << "Current List: " << myList << endl;
 
-        }
-}
+    
     }catch (const out_of_range& e){
         cerr << "Caught error: " << e.what() << endl;
     }
+}
 
     return 0;
 }

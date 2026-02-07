@@ -131,7 +131,7 @@ void LinkedList<T>::remove(int position){
             }
             
             prev = prev -> next;
-            
+
         }
         if (prev -> next == nullptr){
             throw out_of_range ("Position out of bounds.");
@@ -173,7 +173,7 @@ void LinkedList<T>::replace(int position, const T& elem) {
 }
 
 template <typename T>
-ostream& operator<<(ostream& outStream, const LinkedList<T>& myObj) {
+ostream& operator<<(ostream& outStream, const LinkedList<T>& myObj) { //a display function 
     if (myObj.isEmpty()) {
         outStream << "List is empty, no elements to display.\n";
     }
