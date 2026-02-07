@@ -39,6 +39,7 @@ int main(){
 
             cin.clear();
             cin.ignore(1000, '\n');
+            continue;
         }
 
 
@@ -99,13 +100,12 @@ int main(){
                     cout << "Invalid choice. Try again." << endl;
             }
             
+        }catch (const out_of_range& e){
+            cerr << "Caught error: " << e.what() << endl;
+    }
             // Show the list after every successful operation
             if (running) cout << "Current List: " << myList << endl;
 
-    
-    }catch (const out_of_range& e){
-        cerr << "Caught error: " << e.what() << endl;
-    }
 }
 
     return 0;
