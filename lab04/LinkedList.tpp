@@ -10,7 +10,7 @@ LinkedList<T>::~LinkedList() {
 template <typename T>
 void LinkedList<T>::append(const T& elem) {
     // TODO
-    Node* current = head;
+    
     Node* newNode = new Node(elem);
 
     if (current == nullptr){
@@ -18,12 +18,13 @@ void LinkedList<T>::append(const T& elem) {
     } else{
 
     while (current -> next != nullptr){
+        Node* current = head;
         current = current -> next;
     }
 
     current -> next = newNode;
     }
-    ++length;
+    ++this -> length;
 }
 
 template <typename T>
@@ -36,7 +37,7 @@ void LinkedList<T>::clear() {
         current = next;
     }
     head = nullptr;
-    length = 0;
+    this -> length = 0;
 }
 
 template <typename T>
@@ -73,7 +74,7 @@ void LinkedList<T>::insert(int position, const T& elem){
 
     if (position == 0){
         head = new Node(elem, head);
-        ++length;
+        ++this -> length;
         return;
     }
 
@@ -86,7 +87,7 @@ void LinkedList<T>::insert(int position, const T& elem){
         if (count == position){
             prev -> next = newNode;
             newNode -> next = current;
-            ++length;
+            ++ this ->length;
             return;
         }
         prev = current;
@@ -96,7 +97,7 @@ void LinkedList<T>::insert(int position, const T& elem){
 
     if (count == position){
         prev -> next = newNode;
-        ++length;
+        ++this ->length;
         return;
     }
 
@@ -118,7 +119,7 @@ void LinkedList<T>::remove(int position){
         Node* temp = head;
         head = temp -> next;
         delete temp;
-        --length;
+        --this ->length;
         return;
     }else{
             Node* temp = nullptr;
@@ -139,7 +140,7 @@ void LinkedList<T>::remove(int position){
             temp = prev -> next;
             prev -> next = temp -> next;
             delete temp;
-            --length;                
+            --this ->length;                
             return;
                 
             }

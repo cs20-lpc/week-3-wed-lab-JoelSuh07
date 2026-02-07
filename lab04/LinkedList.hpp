@@ -14,7 +14,8 @@ class LinkedList : public List<T> {
             Node* next;
             Node* prev;
 
-            Node(T v = T(), Node* n, Node* p = nullptr)
+
+            Node(T v = T(), Node* n = nullptr, Node* p = nullptr)
             : value(v), next(n), prev(p) { }
         };
 
@@ -42,13 +43,13 @@ class LinkedList : public List<T> {
 
         // insert the given element (argument 2) at
         // the given position (argument 1)
-        virtual void insert(int, const T&) override { }
+        virtual void insert(int, const T&) override
 
         // determine if the list currently empty
         virtual bool isEmpty() const override;
 
         // remove the element at the given position (argument)
-        virtual void remove(int) override { }
+        virtual void remove(int) override
 
         // replace the element at the given position (argument 1) with
         // the value given (argument 2)
