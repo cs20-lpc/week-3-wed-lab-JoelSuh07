@@ -15,12 +15,14 @@ void LinkedList<T>::append(const T& elem) {
 
     if (current == nullptr){
         head = newNode;
-    }
+    } else{
 
-    while (current != nullptr){
+    while (current -> next != nullptr){
         current = current -> next;
     }
+
     current -> next = newNode;
+    }
     ++length;
 }
 
@@ -114,32 +116,33 @@ void LinkedList<T>::remove(int position){
     
     if (position == 0){
         Node* temp = head;
-        delete head;
         head = temp -> next;
+        delete temp;
         --length;
         return;
-    }
-
-    Node* current = head;
-    Node* prev = nullptr;
-    int count = 0;
-    
-    while (current != nullptr){
-        if (count == position){
-            prev = current;
-            current = current -> next;
-            delete prev;
-            prev = current;
-            --length;
-            return;
+    }else{
+            Node* current = head;
+            Node* prev = nullptr;
+            int count = 0;
+            
+        for (int i = 0; i < position; ++i){
+            
+            if (count == position){
+                prev -> next = current -> next;
+                delete current;
+                --length;
+                return;
+            }else{
+                prev = current;
+                current = current -> next;
+                ++count;
+            }
         }
-        prev = current;
-        current = current -> next;
-        ++count;
     }
 
     if (count == position){
-        delete prev;
+        Node* temp = current;
+        delete temp;
         --length;
         return;
     }
