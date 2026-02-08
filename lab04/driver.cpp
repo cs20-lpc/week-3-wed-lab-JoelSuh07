@@ -33,6 +33,7 @@ int main(){
 
     while (running) {
         printMenu();
+        if (running) cout << "Current List: " << myList << endl;
 
         if (!(cin >> choice)){
             cout << "Invalid input. Please use an Integer value." << endl;
@@ -41,7 +42,6 @@ int main(){
             cin.ignore(1000, '\n');
             continue;
         }
-if (running) cout << "Current List: " << myList << endl;
 
         try {
             switch (choice) {
