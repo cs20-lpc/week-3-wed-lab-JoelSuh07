@@ -130,9 +130,8 @@ void LinkedList<T>::remove(int position){
 template <typename T>
 void LinkedList<T>::replace(int position, const T& elem) {
     // TODO
-    if (position < 1){
-        throw out_of_range ("Position cannot be negative value.");
-    }
+    if (position < 1 || position > this -> length) throw out_of_range ("Position cannot be negative value.");
+
     Node* current = head;
     int count = 1;
 
