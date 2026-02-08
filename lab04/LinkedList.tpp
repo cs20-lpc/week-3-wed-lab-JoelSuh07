@@ -85,13 +85,15 @@ void LinkedList<T>::insert(int position, const T& elem){
         }else if(position == 1){ // at first position
 
             Node* newNode = new Node(elem, head, nullptr);
-            head -> prev = newNode;
+
+            if(head != nullptr) head -> prev = newNode;
+
             head = newNode;
             
             ++this -> length;
             return;
 
-        }else{
+        }else{ //for middle insertion
 
         Node* newNode = new Node(elem, current, current -> prev);
         current -> prev -> next = newNode;
