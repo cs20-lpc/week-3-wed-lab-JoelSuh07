@@ -112,6 +112,8 @@ bool LinkedList<T>::isEmpty() const {
 template <typename T>
 void LinkedList<T>::remove(int position){
     // TODO added by myself
+    if (head == nullptr) throw out_of_range ("List is empty.");
+    
     if (position < 1 || position > this -> length) throw out_of_range ("Position out of bounds.");
     
     Node* current = head;
@@ -122,7 +124,7 @@ void LinkedList<T>::remove(int position){
 
     if (current -> next != nullptr) current -> next -> prev = current -> prev;
 
-    --length;
+    --this -> length;
     delete current;
     return;
     }

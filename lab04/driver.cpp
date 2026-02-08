@@ -23,10 +23,10 @@ int main(){
 
     LinkedList<int> myList;
     //preinserting values into LinkedList
-    myList.insert(0, 0);
-    myList.insert(1, 10);
-    myList.insert(2, 20);
-    myList.insert(3, 30);
+    myList.insert(1, 0);
+    myList.insert(2, 10);
+    myList.insert(3, 20);
+    myList.insert(4, 30);
 
     int choice, pos, val;
     bool running = true;
@@ -86,7 +86,7 @@ int main(){
                     break;
 
                 case 8: //To Remove
-                    cout << "Enter a positino to remove: ";
+                    cout << "Enter a position to remove: ";
                     cin >> pos;
                     myList.remove(pos);
                     cout << "Removed element at " << pos << endl;
