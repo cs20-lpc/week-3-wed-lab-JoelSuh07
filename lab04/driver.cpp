@@ -41,7 +41,7 @@ int main(){
             cin.ignore(1000, '\n');
             continue;
         }
-
+if (running) cout << "Current List: " << myList << endl;
 
         try {
             switch (choice) {
