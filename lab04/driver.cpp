@@ -5,7 +5,7 @@ using namespace std;
 
 
     void printMenu() {
-    cout << "\n--- LinkedList Driver ---" << endl;
+    cout << "\n--- LinkedList Menu ---" << endl;
     cout << "1. Append" << endl;
     cout << "2. Insert" << endl;
     cout << "3. Replace" << endl;
@@ -15,7 +15,7 @@ using namespace std;
     cout << "7. Check if Empty" << endl;
     cout << "8. Remove a Position" << endl;
     cout << "9. Exit" << endl;
-    cout << "Choice: ";
+    cout << "Choice (1-9): ";
 }
 
 

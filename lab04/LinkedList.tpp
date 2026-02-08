@@ -71,42 +71,34 @@ int LinkedList<T>::getLength() const {
 template <typename T>
 void LinkedList<T>::insert(int position, const T& elem){
     //TODO added by myself
-    if (position < 1 || position > this -> length) throw out_of_range ("Position out of bounds.");
+    if (position < 1 || position > this -> length + 1) throw out_of_range ("Position out of bounds.");
 
-    /*
-    if (position == 1){
-        Node* newNode = new Node(elem, head, nullptr);
-        ++this -> length;
-        return;
-    }
-*/
     Node* current = head;
 
-    for (int i = 1; i < position; ++i) current = current -> next;
+    for (int i = 1; i < position ; ++i) current = current -> next;
 
-    if (current == nullptr){
-            /*
-            prev -> next = newNode;
-            newNode -> next = current;
-            ++ this ->length;
-            */
-           //can use append for end of the list
-           append(elem);
+    if (current == nullptr){ //at the end of list
 
+            append(elem); //can use append for end of the list
             return;
-        }else if(position == 1){
+
+        }else if(position == 1){ // at first position
+
             Node* newNode = new Node(elem, head, nullptr);
             head -> prev = newNode;
             head = newNode;
+            
             ++this -> length;
             return;
-        }
-        else{
+
+        }else{
+
         Node* newNode = new Node(elem, current, current -> prev);
         current -> prev -> next = newNode;
         current -> prev = newNode;
         ++this -> length;
         return;
+
         }
     }
 
@@ -118,38 +110,19 @@ bool LinkedList<T>::isEmpty() const {
 template <typename T>
 void LinkedList<T>::remove(int position){
     // TODO added by myself
-    if (position < 1) throw out_of_range ("Position cannot be negative.");
+    if (position < 1 || position > this -> length) throw out_of_range ("Position cannot be negative.");
     
-    if (position == 1){
-        Node* temp = head;
-        head = temp -> next;
-        delete temp;
-        --this ->length;
-        return;
-    }else{
-            Node* temp = nullptr;
-            Node* prev = head;
+    Node* current = head;
+    for (int i = 1; i < position; ++i) current = current -> next;
 
-        for (int i = 1; i < position; ++i){
-            
-            if (prev == nullptr || prev -> next == nullptr){
-                throw out_of_range ("Position out of bounds.");
-            }
-            
-            prev = prev -> next;
+    if (current -> prev == nullptr) head = current -> next; // it's the first index, checking if prev is nullptr
+    else current -> prev -> next = current -> next; // middle indexes removed
 
-        }
-        if (prev -> next == nullptr){
-            throw out_of_range ("Position out of bounds.");
-        } else{
-            temp = prev -> next;
-            prev -> next = temp -> next;
-            delete temp;
-            --this ->length;                
-            return;
-                
-            }
-        }
+    if (current -> next != nullptr) current -> next -> prev = current -> prev;
+
+    --length;
+    delete current;
+    return;
     }
 
 template <typename T>
