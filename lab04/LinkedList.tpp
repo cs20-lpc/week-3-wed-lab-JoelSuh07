@@ -49,7 +49,7 @@ T LinkedList<T>::getElement(int position) const {
     }
 
     Node* current = head;
-    int count = 0;
+    int count = 1;
     
     while (current != nullptr){
         
@@ -71,18 +71,18 @@ int LinkedList<T>::getLength() const {
 template <typename T>
 void LinkedList<T>::insert(int position, const T& elem){
     //TODO added by myself
-    if (position < 0 || position > this -> length) throw out_of_range ("Position out of bounds.");
+    if (position < 1 || position > this -> length) throw out_of_range ("Position out of bounds.");
 
-    if (position == 0){
+    /*
+    if (position == 1){
         Node* newNode = new Node(elem, head, nullptr);
         ++this -> length;
         return;
     }
-
+*/
     Node* current = head;
-    Node* prev = nullptr;
 
-    for (int i = 0; i < position -1; ++i) current = current -> next;
+    for (int i = 1; i < position; ++i) current = current -> next;
 
     if (current == nullptr){
             /*
@@ -94,12 +94,19 @@ void LinkedList<T>::insert(int position, const T& elem){
            append(elem);
 
             return;
+        }else if(position == 1){
+            Node* newNode = new Node(elem, head, nullptr);
+            head -> prev = newNode;
+            head = newNode;
+            ++this -> length;
+            return;
         }
         else{
         Node* newNode = new Node(elem, current, current -> prev);
         current -> prev -> next = newNode;
         current -> prev = newNode;
         ++this -> length;
+        return;
         }
     }
 
@@ -111,9 +118,9 @@ bool LinkedList<T>::isEmpty() const {
 template <typename T>
 void LinkedList<T>::remove(int position){
     // TODO added by myself
-    if (position <0) throw out_of_range ("Position cannot be negative.");
+    if (position < 1) throw out_of_range ("Position cannot be negative.");
     
-    if (position == 0){
+    if (position == 1){
         Node* temp = head;
         head = temp -> next;
         delete temp;
@@ -123,7 +130,7 @@ void LinkedList<T>::remove(int position){
             Node* temp = nullptr;
             Node* prev = head;
 
-        for (int i = 0; i < position -1; ++i){
+        for (int i = 1; i < position; ++i){
             
             if (prev == nullptr || prev -> next == nullptr){
                 throw out_of_range ("Position out of bounds.");
@@ -148,11 +155,11 @@ void LinkedList<T>::remove(int position){
 template <typename T>
 void LinkedList<T>::replace(int position, const T& elem) {
     // TODO
-    if (position < 0){
+    if (position < 1){
         throw out_of_range ("Position cannot be negative value.");
     }
     Node* current = head;
-    int count = 0;
+    int count = 1;
 
     /*
     if (head == nullptr){
