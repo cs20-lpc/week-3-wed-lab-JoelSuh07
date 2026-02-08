@@ -73,7 +73,7 @@ void LinkedList<T>::insert(int position, const T& elem){
     //TODO added by myself
     if (position < 0 || position > this -> length) throw out_of_range ("Position out of bounds.");
 
-    if (position == 0){
+    if (position == 1){
         Node* head = new Node(elem, head, nullptr);
         ++this -> length;
         return;
