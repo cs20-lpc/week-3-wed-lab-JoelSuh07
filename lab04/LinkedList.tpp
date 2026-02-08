@@ -11,7 +11,7 @@ template <typename T>
 void LinkedList<T>::append(const T& elem) {
     // TODO
     
-    Node* newNode = new Node(elem);
+    Node* newNode = new Node(elem, nullptr, nullptr);
     Node* current = head;
 
     if (current == nullptr){

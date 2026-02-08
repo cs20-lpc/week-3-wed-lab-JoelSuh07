@@ -15,7 +15,7 @@ class LinkedList : public List<T> {
             Node* prev;
 
 
-            Node(T v = T(), Node* n = nullptr, Node* p = nullptr)
+            Node(T v , Node* n = nullptr, Node* p = nullptr)
             : value(v), next(n), prev(p) { }
 
             Node(T v = T(), Node* n =nullptr){
